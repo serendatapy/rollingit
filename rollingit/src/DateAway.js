@@ -7,24 +7,27 @@ import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 
-function DateAway() {
-  const [date1, setDate1] = React.useState(new Date());
-  const [date2, setDate2] = React.useState(new Date());
-  const [value, setValue] = React.useState(0);
+function DateAway({dates}) {
+  const {
+    dateDeparture,
+    dateReturn
+  } = dates;
+  const [date1, setDate1] = React.useState(dateDeparture);
+  const [date2, setDate2] = React.useState(dateReturn);
+  const [value, setValue] = React.useState(differenceInCalendarDays(date2, date1) || 0);
 
   const handleChangeDate1 = (newDate1) => {
     setDate1(newDate1);
-    console.log('Saved Date: ', newDate1)
-    const totalDays = differenceInCalendarDays(date2, newDate1)
-    console.log('New Difference: ', totalDays)
-    setValue(totalDays)
+    let totalDays = differenceInCalendarDays(date2, newDate1)
+    if(totalDays < 0) {
+      setDate2(newDate1);
+      setValue(0)
+    } else setValue(totalDays)
   };
 
   const handleChangeDate2 = (newDate2) => {
     setDate2(newDate2);
-    console.log('Saved Date2: ', newDate2)
     const totalDays = differenceInCalendarDays(newDate2, date1)
-    console.log('New Difference: ', totalDays)
     setValue(totalDays)
   };
 
@@ -33,14 +36,14 @@ function DateAway() {
         divider={<Divider orientation="vertical" flexItem />}
         spacing={2} style={{ margin: '50px' }}>
         <DesktopDatePicker
-          label="Date desktop"
+          label="Date left"
           inputFormat="dd/MM/yyyy"
           value={date1}
           onChange={handleChangeDate1}
           renderInput={(params) => <TextField {...params} />}
         />
         <DesktopDatePicker
-          label="Date desktop"
+          label="Date returned"
           inputFormat="dd/MM/yyyy"
           value={date2}
           onChange={handleChangeDate2}
@@ -48,8 +51,8 @@ function DateAway() {
           minDate={date1}
         />
         <TextField
-          id="standard-read-only-input"
-          label="Total Days"
+          id="total-days-difference"
+          label="Total days"
           InputProps={{
             readOnly: true,
           }}
