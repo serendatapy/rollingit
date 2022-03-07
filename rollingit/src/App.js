@@ -16,12 +16,16 @@ function App() {
 
   function handleAddDates() {
     const newDate = {
-      id:uuidv4(),
+      id: uuidv4(),
       dateDeparture: new Date(),
       dateReturn: new Date(),
     }
 
-    setSampleDates([...sampleDates,newDate])
+    setSampleDates([...sampleDates, newDate])
+  }
+
+  function handleDeleteDates(datesId) {
+    setSampleDates(sampleDates.filter(dates => dates.id !== datesId));
   }
 
   return (
@@ -30,6 +34,7 @@ function App() {
       <div style={{ margin: '50px' }}>
         <DateAwayList
           sampleDays={sampleDates}
+          handleDeleteDates={handleDeleteDates}
         />
         <Button
           variant="contained"

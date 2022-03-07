@@ -12,8 +12,10 @@ import Button from '@mui/material/Button';
 function DateAway(props) {
 
   const {
+    id,
     dateDeparture,
-    dateReturn
+    dateReturn,
+    handleDeleteDates
   } = props;
 
   const [date1, setDate1] = React.useState(dateDeparture);
@@ -65,10 +67,11 @@ function DateAway(props) {
         value={value}
       />
       <Button
-      variant="contained"
-      color="secondary"
+        variant="contained"
+        color="secondary"
+        onClick={() => handleDeleteDates(id)}
       >
-      Delete
+        Delete
       </Button>
     </Stack>
   )

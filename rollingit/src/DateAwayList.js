@@ -2,7 +2,11 @@ import React from 'react'
 import DateAway from './DateAway';
 
 
-function DateAwayList({ sampleDays }) {
+function DateAwayList(props) {
+  const {
+    sampleDays,
+    handleDeleteDates
+  } = props;
   return (
     <>
       {
@@ -10,6 +14,7 @@ function DateAwayList({ sampleDays }) {
           return (
             <DateAway
             key={dates.id}
+            handleDeleteDates={handleDeleteDates}
             {...dates}
             />
           )
