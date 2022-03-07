@@ -2,20 +2,16 @@ import React from 'react'
 import DateAway from './DateAway';
 
 
-function DateAwayList(props) {
-  const {
-    sampleDays,
-    handleDeleteDates
-  } = props;
+function DateAwayList({sampleDays}) {
+
   return (
     <>
       {
         sampleDays.map(dates => {
           return (
             <DateAway
-            key={dates.id}
-            handleDeleteDates={handleDeleteDates}
-            {...dates}
+              key={dates.id}
+              {...dates}
             />
           )
         })

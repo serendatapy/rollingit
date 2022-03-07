@@ -9,9 +9,19 @@ import DateAwayList from './DateAwayList';
 
 import Button from '@mui/material/Button';
 
+export const DatesAwayContext = React.createContext();
+
 function App() {
 
   const [sampleDates, setSampleDates] = React.useState(sampleDays);
+
+  /**
+   * ES6: Here we use handleAddDates instead of handleAddDates: handleAddDates, because the key-value pair are the same
+   */
+  const DatesAwayContextValue = {
+    handleAddDates,
+    handleDeleteDates
+  }
 
 
   function handleAddDates() {
@@ -30,21 +40,23 @@ function App() {
 
   return (
     <LocalizationProvider dateAdapter={DateAdapter}>
+      <DatesAwayContext.Provider value={DatesAwayContextValue}>
 
-      <div style={{ margin: '50px' }}>
-        <DateAwayList
-          sampleDays={sampleDates}
-          handleDeleteDates={handleDeleteDates}
-        />
-        <Button
-          variant="contained"
-          size="large"
-          onClick={handleAddDates}
-        >
-          Add Trip
-        </Button>
-      </div>
 
+        <div style={{ margin: '50px' }}>
+          <DateAwayList
+            sampleDays={sampleDates}
+          />
+          <Button
+            variant="contained"
+            size="large"
+            onClick={handleAddDates}
+          >
+            Add Trip
+          </Button>
+        </div>
+
+      </DatesAwayContext.Provider>
 
     </LocalizationProvider>
   )

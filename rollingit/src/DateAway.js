@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { DatesAwayContext } from './App';
+
 import { differenceInCalendarDays } from "date-fns"
 
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
@@ -15,8 +17,9 @@ function DateAway(props) {
     id,
     dateDeparture,
     dateReturn,
-    handleDeleteDates
   } = props;
+
+  const { handleDeleteDates } = useContext(DatesAwayContext);
 
   const [date1, setDate1] = React.useState(dateDeparture);
   const [date2, setDate2] = React.useState(dateReturn);
