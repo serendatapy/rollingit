@@ -1,8 +1,21 @@
 import React from 'react'
+import DateAway from './DateAway';
 
-function DateAwayList() {
+
+function DateAwayList({ sampleDays }) {
   return (
-    <div>DateAwayList</div>
+    <>
+      {
+        sampleDays.map(dates => {
+          return (
+            <DateAway
+            key={dates.id}
+            {...dates}
+            />
+          )
+        })
+      }
+    </>
   )
 }
 

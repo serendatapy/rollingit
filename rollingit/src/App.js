@@ -3,8 +3,8 @@ import * as React from 'react';
 import DateAdapter from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 
-import DateAway from './DateAway';
 import parseISO from 'date-fns/parseISO';
+import DateAwayList from './DateAwayList';
 
 function App() {
   //const [datesAway,setDatesAway] = useState([])
@@ -12,7 +12,7 @@ function App() {
   return (
     <LocalizationProvider dateAdapter={DateAdapter}>
 
-      <DateAway dates={sampleDays[0]}></DateAway>
+      <DateAwayList sampleDays={sampleDays}></DateAwayList>
 
     </LocalizationProvider>
   )

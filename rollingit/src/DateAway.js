@@ -7,11 +7,13 @@ import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 
-function DateAway({dates}) {
+function DateAway(props) {
+
   const {
     dateDeparture,
     dateReturn
-  } = dates;
+  } = props;
+
   const [date1, setDate1] = React.useState(dateDeparture);
   const [date2, setDate2] = React.useState(dateReturn);
   const [value, setValue] = React.useState(differenceInCalendarDays(date2, date1) || 0);
